@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3303:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - looveit_laravel_app_network
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - looveit_laravel_app_network
+
+volumes:
+  db_data:
+networks:
+  looveit_laravel_app_network:
+    external: true
