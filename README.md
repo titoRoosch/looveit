@@ -1,4 +1,9 @@
-INSTRUÇÔES
+REQUISITOS:
+
+    - docker
+    - docker-compose
+
+INSTRUÇÔES:
 
 docker-compose build
 
@@ -25,3 +30,9 @@ php artisan config:clear
 php artisan cache:clear
 
 docker-compose restart
+
+docker-exec -it web bash
+
+php artisan migrate
+
+php artisan db:seed --class=ProductsSeeder
