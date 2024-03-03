@@ -2,10 +2,19 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class CancelSaleTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * Cancela uma venda
      */
@@ -28,5 +37,15 @@ class CancelSaleTest extends TestCase
     public function testCancelCacelledSaleFail(): void
     {
         $this->assertTrue(true);
+    }
+
+    protected function mocks() 
+    {
+
+    }
+    
+    public function tearDown(): void
+    {
+        parent::tearDown();
     }
 }

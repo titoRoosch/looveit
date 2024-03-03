@@ -16,6 +16,21 @@ services:
     networks:
       - looveit_laravel_app_network
 
+  test_db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: test_${MYSQL_DATABASE} # Usando um banco de dados de teste separado
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3304:3306" # Porta diferente do banco de dados principal
+    volumes:
+      - test_db_data:/var/lib/mysql
+    networks:
+      - looveit_laravel_app_network
+
   web:
     build: .
     restart: always
@@ -30,6 +45,7 @@ services:
 
 volumes:
   db_data:
+  test_db_data:
 networks:
   looveit_laravel_app_network:
     external: true

@@ -2,16 +2,35 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Products;
+use App\Operations\Products\ProductsSearcher;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ListProductsTest extends TestCase
 {
+
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
     /**
      * Lista todos os produtos
      */
     public function testListAllProductsSuccess(): void
     {
-        $this->assertTrue(true);
+        #preparation
+        $mocks = $this->mocks();
+
+        #run
+        $operation = new ProductsSearcher();
+        $products = $operation->search();
+
+        #assertions
+        $this->assertEquals(6, $products->count());
     }
 
     /**
@@ -19,7 +38,15 @@ class ListProductsTest extends TestCase
      */
     public function testListSpecificProductSuccess(): void
     {
-        $this->assertTrue(true);
+        #preparation
+        $mocks = $this->mocks();
+
+        #run
+        $operation = new ProductsSearcher();
+        $products = $operation->search($mocks[0]->id);
+
+        #assertions
+        $this->assertEquals($mocks[0]->id, $products->id);
     }
 
 
@@ -28,6 +55,21 @@ class ListProductsTest extends TestCase
      */
     public function testListInvalidProductFail(): void
     {
-        $this->assertTrue(true);
+        $operation = new ProductsSearcher();
+        $products = $operation->search(1);
+
+        #assertions
+        $this->assertNull($products);
+    }
+
+    protected function mocks() 
+    {
+        $prod = Products::factory(6)->create();
+        return $prod;
+    }
+    
+    public function tearDown(): void
+    {
+        parent::tearDown();
     }
 }

@@ -2,10 +2,20 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ListSalesTest extends TestCase
 {
+
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * Lista todos as vendas
      */
@@ -29,5 +39,15 @@ class ListSalesTest extends TestCase
     public function testListInvalidSaleFail(): void
     {
         $this->assertTrue(true);
+    }
+
+    protected function mocks() 
+    {
+
+    }
+    
+    public function tearDown(): void
+    {
+        parent::tearDown();
     }
 }
