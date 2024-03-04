@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class SalesTest extends TestCase
+class SalesSearchTest extends TestCase
 {
 
     use RefreshDatabase;
@@ -63,7 +63,6 @@ class SalesTest extends TestCase
         $response->assertStatus(200);
         $this->assertEquals(0, count($data));
     }
-
 
     protected function mocks() 
     {

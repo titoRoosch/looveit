@@ -19,4 +19,8 @@ class ProductsSearcher
 
         return Products::get();
     }
+
+    public function searchByArray($productsIds = []) {
+        return Products::whereIn('id', $productsIds)->get();
+    }
 }

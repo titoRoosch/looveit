@@ -45,4 +45,9 @@ class SalesSearcher
 
         return $salesFormated;
     }
+
+    public function searchFind($salesId) {
+        $sale = Sales::find($salesId);
+        return $sale;
+    }
 }

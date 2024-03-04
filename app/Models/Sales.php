@@ -10,6 +10,7 @@ class Sales extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['amount', 'status'];
 
     public function items()
     {

@@ -10,6 +10,8 @@ class SalesItems extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['quantity', 'product_id', 'sale_id'];
+
     public function product(): belongsTo
     {
         return $this->belongsTo(Products::class, 'product_id');
