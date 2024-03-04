@@ -33,8 +33,8 @@ class SalesCancelTest extends TestCase
 
     public function testCancelInvalidSale() : void
     {
-        $this->mocks();
-        $response = $this->patch('/api/sales/78546');
+        $mocks = $this->mocks();
+        $response = $this->patch('/api/sales/'.$mocks['sale']->id+1);
 
         $content = $response->getContent();
 

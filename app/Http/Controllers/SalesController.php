@@ -161,5 +161,4 @@ class SalesController extends BaseController
 
         return $productsToProcess;        
     }
-    
 }

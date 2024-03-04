@@ -36,7 +36,7 @@ class SalesCreateTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals('Venda criada com sucesso', $responseData['message']);
-
+        $this->assertEquals($mocks['products'][0]->id, $data[0]['products'][0]['product_id']);
     }
 
 
@@ -97,9 +97,11 @@ class SalesCreateTest extends TestCase
         $content = $response->getContent();
 
         $responseData = json_decode($content, true);
+        $data = $responseData['data'];
 
         $response->assertStatus(200);
         $this->assertEquals('Venda atualizada com sucesso', $responseData['message']);
+        $this->assertEquals($mocks['products'][0]->id, $data[0]['products'][0]['product_id']);
 
     }
 
@@ -152,7 +154,7 @@ class SalesCreateTest extends TestCase
             ]
         ];
 
-        $response = $this->post('/api/sales/12568', $data);
+        $response = $this->post('/api/sales/'.$mocks['sale']->id+1, $data);
         $content = $response->getContent();
 
         $responseData = json_decode($content, true);
