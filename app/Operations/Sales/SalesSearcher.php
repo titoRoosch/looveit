@@ -35,9 +35,9 @@ class SalesSearcher
                 'products' => $sale->items->map(function ($item) {
                     return [
                         'product_id' => $item->product->id,
-                        'nome' => $item->product->nome,
+                        'nome' => $item->product->name,
                         'price' => $item->product->price,
-                        'amount' => $item->amount
+                        'quantity' => $item->quantity
                     ];
                 })
             ];
