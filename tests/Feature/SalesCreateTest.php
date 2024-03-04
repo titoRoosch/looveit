@@ -51,10 +51,9 @@ class SalesCreateTest extends TestCase
         $content = $response->getContent();
 
         $responseData = json_decode($content, true);
-        $data = $responseData['data'];
 
-        $response->assertStatus(400);
-        $this->assertEquals('É necessário informar pelo menos 1 produto válido', $responseData['message']);
+        $response->assertStatus(422);
+        $this->assertEquals('O campo products é obrigatório.', $responseData['message']);
     }
 
     public function testCreateInvalidProduct() : void
@@ -116,8 +115,8 @@ class SalesCreateTest extends TestCase
 
         $responseData = json_decode($content, true);
 
-        $response->assertStatus(400);
-        $this->assertEquals('É necessário informar pelo menos 1 produto válido', $responseData['message']);
+        $response->assertStatus(422);
+        $this->assertEquals('O campo products é obrigatório.', $responseData['message']);
     }
 
     public function testAddInvalidProduct() : void
