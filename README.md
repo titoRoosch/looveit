@@ -29,6 +29,8 @@ INSTRUÇÔES:
     php artisan config:clear
     php artisan cache:clear
 
+    exit
+
     docker-compose restart
 
     docker-exec -it web bash
@@ -40,4 +42,4 @@ INSTRUÇÔES:
 
 TESTES unitários:
 
-docker-compose run --rm web vendor/bin/phpunit
+    docker-compose run --rm web vendor/bin/phpunit
