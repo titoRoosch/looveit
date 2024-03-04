@@ -39,6 +39,9 @@ INSTRUÇÔES:
 
     php artisan db:seed --class=ProductsSeeder
 
+OBS: Caso não vá usar os dados de DB_DATABASE, DB_USER e DB_PASSWORD é necessário alterar 
+.env.testing de acordo 
+
 
 TESTES unitários:
 
