@@ -1,41 +1,41 @@
 REQUISITOS:
 
-    - docker
-    - docker-compose
+    docker
+    docker-compose
 
 INSTRUÇÔES:
 
-docker-compose build
+    docker-compose build
 
-docker network create looveit_laravel_app_network
+    docker network create looveit_laravel_app_network
 
-docker-compose up -d
+    docker-compose up -d
 
-docker-exec -it web bash
+    docker-exec -it web bash
 
-composer install
+    composer install
 
-php artisan key:generate
+    php artisan key:generate
 
-chmod -R 775 storage/logs
-chown -R www-data:www-data storage/logs
+    chmod -R 775 storage/logs
+    chown -R www-data:www-data storage/logs
 
-chmod -R 775 storage/framework/sessions
-chown -R www-data:www-data storage/framework/sessions
+    chmod -R 775 storage/framework/sessions
+    chown -R www-data:www-data storage/framework/sessions
 
-chmod -R 775 storage/framework/views
-chown -R www-data:www-data storage/framework/views
+    chmod -R 775 storage/framework/views
+    chown -R www-data:www-data storage/framework/views
 
-php artisan config:clear
-php artisan cache:clear
+    php artisan config:clear
+    php artisan cache:clear
 
-docker-compose restart
+    docker-compose restart
 
-docker-exec -it web bash
+    docker-exec -it web bash
 
-php artisan migrate
+    php artisan migrate
 
-php artisan db:seed --class=ProductsSeeder
+    php artisan db:seed --class=ProductsSeeder
 
 
 TESTES unitários:
