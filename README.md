@@ -5,6 +5,8 @@ REQUISITOS:
 
 INSTRUÇÔES:
 
+    copiar arquivo .env.example para .env
+
     docker-compose build
 
     docker network create looveit_laravel_app_network
