@@ -36,3 +36,8 @@ docker-exec -it web bash
 php artisan migrate
 
 php artisan db:seed --class=ProductsSeeder
+
+
+TESTES unitários:
+
+docker-compose run --rm web vendor/bin/phpunit

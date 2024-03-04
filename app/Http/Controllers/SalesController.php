@@ -35,7 +35,7 @@ class SalesController extends BaseController
             return response([
                 'data' => [],
                 'message' => 'Venda não encontrada'
-            ], 200)->header('Content-Type', 'text/json');
+            ], 404)->header('Content-Type', 'text/json');
         }
 
         return response([
@@ -107,7 +107,7 @@ class SalesController extends BaseController
 
         return response([
             'data' => $sales,
-            'message' => 'Venda criada com sucesso'
+            'message' => 'Venda atualizada com sucesso'
         ], 200)->header('Content-Type', 'text/json');
     }
 

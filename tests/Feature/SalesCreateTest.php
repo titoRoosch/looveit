@@ -16,10 +16,12 @@ class SalesCreateTest extends TestCase
 
     public function testCreateSale() : void
     {
+        $mocks = $this->mocks();
+
         $data = [
             'products' => [
                 [
-                    'product_id' => 1,
+                    'product_id' => $mocks['products'][0]->id,
                     'quantity' => 1
                 ],
             ]
@@ -27,6 +29,13 @@ class SalesCreateTest extends TestCase
 
         $response = $this->post('/api/sales', $data);
 
+        $content = $response->getContent();
+
+        $responseData = json_decode($content, true);
+        $data = $responseData['data'];
+
+        $response->assertStatus(200);
+        $this->assertEquals('Venda criada com sucesso', $responseData['message']);
 
     }
 
@@ -52,6 +61,25 @@ class SalesCreateTest extends TestCase
     {
         $mocks = $this->mocks();
 
+        $data = [
+            'products' => [
+                [
+                    'product_id' => $mocks['products'][2]->id+1,
+                    'quantity' => 1
+                ],
+            ]
+        ];
+
+        $response = $this->post('/api/sales', $data);
+
+        $content = $response->getContent();
+
+        $responseData = json_decode($content, true);
+        $data = $responseData['data'];
+
+        $response->assertStatus(400);
+        $this->assertEquals('É necessário informar pelo menos 1 produto válido', $responseData['message']);
+
     }
 
     public function testAddProduct() : void
@@ -66,24 +94,51 @@ class SalesCreateTest extends TestCase
             ]
         ];
 
-        $response = $this->post('/api/sales/'.$mocks['sales'][0]->id, $data);
+        $response = $this->post('/api/sales/'.$mocks['sale']->id, $data);
         $content = $response->getContent();
 
         $responseData = json_decode($content, true);
 
         $response->assertStatus(200);
-        $this->assertEquals('Venda não encontrada', $responseData['message']);
+        $this->assertEquals('Venda atualizada com sucesso', $responseData['message']);
 
     }
 
     public function testAddEmptyProduct() : void
     {
         $mocks = $this->mocks();
+        $data = [
+            'products' => []
+        ];
+
+        $response = $this->post('/api/sales/'.$mocks['sale']->id, $data);
+        $content = $response->getContent();
+
+        $responseData = json_decode($content, true);
+
+        $response->assertStatus(400);
+        $this->assertEquals('É necessário informar pelo menos 1 produto válido', $responseData['message']);
     }
 
     public function testAddInvalidProduct() : void
     {
         $mocks = $this->mocks();
+        $data = [
+            'products' => [
+                [
+                    'product_id' => $mocks['products'][2]->id+1,
+                    'quantity' => 1
+                ],
+            ]
+        ];
+
+        $response = $this->post('/api/sales/'.$mocks['sale']->id, $data);
+        $content = $response->getContent();
+
+        $responseData = json_decode($content, true);
+
+        $response->assertStatus(400);
+        $this->assertEquals('É necessário informar pelo menos 1 produto válido', $responseData['message']);
     }
 
     public function testAddProductToInvalidSale() : void

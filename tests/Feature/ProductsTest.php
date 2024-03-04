@@ -58,8 +58,9 @@ class ProductsTest extends TestCase
         $responseData = json_decode($content, true);
         $data = $responseData['data'];
 
-        $response->assertStatus(200);
+        $response->assertStatus(404);
         $this->assertEquals(0, count($data));
+        $this->assertEquals('Produto não encontrado', $responseData['message']);
     }
 
     protected function mocks() 

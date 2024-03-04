@@ -32,7 +32,7 @@ class ProductsController extends BaseController
             return response([
                 'data' => [],
                 'message' => 'Produto não encontrado'
-            ], 200)->header('Content-Type', 'text/json');
+            ], 404)->header('Content-Type', 'text/json');
         }
 
         return response([

@@ -60,7 +60,7 @@ class SalesSearchTest extends TestCase
         $responseData = json_decode($content, true);
         $data = $responseData['data'];
 
-        $response->assertStatus(200);
+        $response->assertStatus(404);
         $this->assertEquals(0, count($data));
     }
 
