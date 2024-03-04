@@ -79,10 +79,10 @@ class SalesController extends BaseController
         $operation = new SalesSearcher();
         $sale = $operation->searchFind($req->sales_id);
 
-        if($sale == null) {
+        if($sale == null || $sale->status == 'canceled') {
             return response([
                 'data' => [],
-                'message' => 'Venda não encontrada'
+                'message' => 'Venda não encontrada ou cancelada'
             ], 404)->header('Content-Type', 'text/json');
         }
 

@@ -52,7 +52,7 @@ class SalesSearchTest extends TestCase
      */
     public function testGetSalesByInvalidId(): void
     {
-        $this->mocks();
+        $mocks = $this->mocks();
         $response = $this->get('/api/sales/'.$mocks['sale']->id+1);
 
         $content = $response->getContent();

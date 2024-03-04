@@ -160,9 +160,32 @@ class SalesCreateTest extends TestCase
         $responseData = json_decode($content, true);
 
         $response->assertStatus(404);
-        $this->assertEquals('Venda não encontrada', $responseData['message']);
+        $this->assertEquals('Venda não encontrada ou cancelada', $responseData['message']);
     }
 
+    public function testAddProductToCanceledSale() : void
+    {
+        $mocks = $this->mocks();
+        $mocks['sale']->status = 'canceled';
+        $mocks['sale']->update();
+
+        $data = [
+            'products' => [
+                [
+                    'product_id' => $mocks['products'][0]->id,
+                    'quantity' => 1
+                ],
+            ]
+        ];
+
+        $response = $this->post('/api/sales/'.$mocks['sale']->id, $data);
+        $content = $response->getContent();
+
+        $responseData = json_decode($content, true);
+
+        $response->assertStatus(404);
+        $this->assertEquals('Venda não encontrada ou cancelada', $responseData['message']);
+    }
 
     protected function mocks() 
     {
