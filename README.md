@@ -13,7 +13,7 @@ INSTRUÇÔES:
 
     docker-compose up -d
 
-    docker-exec -it web bash
+    docker-compose exec web bash
 
     composer install
 
@@ -35,7 +35,7 @@ INSTRUÇÔES:
 
     docker-compose restart
 
-    docker-exec -it web bash
+    docker-compose exec web bash
 
     php artisan migrate
 
