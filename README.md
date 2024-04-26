@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Biblioteca
 
-Este é um sistema de gerenciamento de produtos construído com Laravel.
+Este é um sistema de gerenciamento de biblioteca construído com Laravel.
 
 ## Requisitos
 
@@ -75,6 +75,7 @@ Este é um sistema de gerenciamento de produtos construído com Laravel.
     php artisan db:seed --class=ProductsSeeder
     ```
 
+## OBS: Caso não vá usar os dados de DB_DATABASE, DB_USER e DB_PASSWORD é necessário alterar .env.testing de acordo 
     
 ## Executando Testes Unitários
 
