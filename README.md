@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Biblioteca
 
-Este é um sistema de gerenciamento de biblioteca construído com Laravel.
+Este é um sistema de gerenciamento de produtos construído com Laravel.
 
 ## Requisitos
 
